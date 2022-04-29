@@ -19,9 +19,10 @@ package Quote_Structure is
 private
    
    type Quote is record
-      Main_Text: Unbounded_String;
-      Author   : Unbounded_String;
-      Source   : Unbounded_String;
+      Quotation   : Unbounded_String;
+      Author      : Unbounded_String;
+      Speaker     : Unbounded_String;
+      Source_Text : Unbounded_String;
    end record;
 
    package Quote_Vector_Package is new Ada.Containers.Vectors

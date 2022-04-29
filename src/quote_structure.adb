@@ -8,13 +8,13 @@ package body Quote_Structure is
                       renames Ada.Strings.Unbounded.To_String;
    
    function body_of(Q: Quote) return String is
-      (To_String(Q.Main_Text));
+      (To_String(Q.Quotation));
    
    function Author_Of(Q: Quote) return String is
       (To_String(Q.Author));
    
    function Source_Of(Q: Quote) return String is
-      (To_String(Q.Source));
+      (To_String(Q.Source_Text));
 
    package TIO renames Ada.Text_IO;
    
@@ -31,7 +31,7 @@ package body Quote_Structure is
             Text_Line: String := Tio.Get_Line(File);
             Author_Line: String := Tio.Get_Line(File);
          begin
-            New_Quote.Main_Text := To_Unbounded_String(Text_Line);
+            New_Quote.Quotation := To_Unbounded_String(Text_Line);
             New_Quote.Author := To_Unbounded_String(Author_Line);
             Into.Append(New_Quote);
          end;
