@@ -1,5 +1,6 @@
 with Ada.Strings.Unbounded;
 with Ada.Containers.Vectors;
+with GnatColl.Json; use GnatColl.Json;
 
 package Quote_Structure is
    
@@ -9,20 +10,28 @@ package Quote_Structure is
    type Quote is private;
    type Quote_Vector is private;
    
-   function body_of(Q: Quote) return String;
+   function Body_Of(Q: Quote) return String;
    function Author_Of(Q: Quote) return String;
    function Source_Of(Q: Quote) return String;
+   function Speaker_Of(Q: Quote) return String;
    
+   function Has_Author(Q: Quote) return Boolean;
+   function Has_Source(Q: Quote) return Boolean;
+   function Has_Speaker(Q: Quote) return Boolean;
+  
    procedure Read_Quotes(From: String; Into: in out Quote_Vector);
    function Random_Quote(From: Quote_Vector) return Quote;
    
 private
    
    type Quote is record
-      Quotation   : Unbounded_String;
-      Author      : Unbounded_String;
-      Speaker     : Unbounded_String;
-      Source_Text : Unbounded_String;
+      Quotation   : UTF8_Unbounded_String;
+      Has_Author  : Boolean := False;
+      Author      : UTF8_Unbounded_String;
+      Has_Speaker : Boolean := False;
+      Speaker     : UTF8_Unbounded_String;
+      Has_Source  : Boolean := False;
+      Source_Text : UTF8_Unbounded_String;
    end record;
 
    package Quote_Vector_Package is new Ada.Containers.Vectors

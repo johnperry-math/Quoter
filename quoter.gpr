@@ -1,3 +1,5 @@
+with "gnatcoll";
+
 project Quoter is
 
    for Source_Dirs use ("src");
@@ -7,6 +9,10 @@ project Quoter is
    package Ide is
       for Vcs_Kind use "git";
    end Ide;
+
+   package Compiler is
+      for Switches ("ada") use ("-gnat2022");
+   end Compiler;
 
 end Quoter;
 
